@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app="geometryList">
 <head>
     <title>WKT Visualizer</title>
 
@@ -10,19 +10,18 @@
     <script src="http://maps.api.2gis.ru/2.0/loader.js?pkg=full"
             data-id="dgLoader"></script>
 
-    <script type="text/javascript">
-        var map;
-        DG.then(function () {
-            map = DG.map('map', {
-                'center': [54.98, 82.89],
-                'fullscreenControl': false,
-                'zoom': 13,
-                'zoomControl': false
-            });
-        });
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
 </head>
 <body>
     <div id="map"></div>
+
+    <ul data-ng-controller="GeometryListController" class="geometry-list">
+        <li data-ng-repeat="item in geometry">
+           <button data-ng-click="removeGeometry($index)">X</button>
+           <span>{{ item.wkt }}</span>
+        </li>
+    </ul>
+
+    <script src="js/app/geometry-list.js"></script>
 </body>
 </html>
