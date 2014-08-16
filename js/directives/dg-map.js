@@ -1,7 +1,8 @@
 (function() {
     'use strict';
 
-    angular.module('geometryList', []).directive('dgMap', function() {
+    var app = angular.module('geometryList');
+    app.directive('dgMap', function() {
         return {
             scope: {
                 id: '@',
@@ -12,12 +13,14 @@
             },
             link: function(scope) {
                 DG.then(function() {
-                    var map = DG.map(scope.id, {
+                    scope.dgMap = DG.map(scope.id, {
                         center: JSON.parse(scope.center),
                         fullscreenControl: scope.fullscreenControl === 'true',
                         zoom: parseInt(scope.zoom),
                         zoomControl: scope.zoomControl === 'true'
                     });
+                    // Signal after map initialization.
+                    scope.$apply();
                 });
             }
         };

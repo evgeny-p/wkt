@@ -11,9 +11,17 @@
             data-id="dgLoader"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
+
+    <script src="js/directives/dg-map.js"></script>
 </head>
 <body>
-    <div id="map"></div>
+    <div id="map"
+         dg-map
+         data-center="[54.98, 82.89]"
+         data-fullscreen-control="false"
+         data-zoom="13"
+         data-zoom-control="false">
+    </div>
 
     <ul data-ng-controller="GeometryListController" class="geometry-list">
         <li data-ng-repeat="item in geometry">
