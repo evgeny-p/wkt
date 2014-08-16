@@ -4,6 +4,7 @@
     var app = angular.module('geometryList');
     app.directive('dgMap', function() {
         return {
+            controller: 'DgMapController',
             scope: {
                 id: '@',
                 center: '@',
