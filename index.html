@@ -1,28 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app="geometryList">
 <head>
     <title>WKT Visualizer</title>
 
     <meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
     <link rel="stylesheet" type="text/css" href="css/wkt.css" />
 
     <script src="http://maps.api.2gis.ru/2.0/loader.js?pkg=full"
             data-id="dgLoader"></script>
 
-    <script type="text/javascript">
-        var map;
-        DG.then(function () {
-            map = DG.map('map', {
-                'center': [54.98, 82.89],
-                'fullscreenControl': false,
-                'zoom': 13,
-                'zoomControl': false
-            });
-        });
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
+
+    <script src="js/lib/underscore-min.js"></script>
+
+    <script src="js/app/app.js"></script>
+    <script src="js/controllers/dg-map.js"></script>
+    <script src="js/controllers/geometry-list.js"></script>
+    <script src="js/controllers/wkt-form.js"></script>
+    <script src="js/directives/dg-map.js"></script>
+    <script src="js/services/geometry-list.js"></script>
 </head>
 <body>
-    <div id="map"></div>
+    <div id="map"
+         dg-map
+         data-center="[54.98, 82.89]"
+         data-fullscreen-control="false"
+         data-zoom="13"
+         data-zoom-control="false">
+    </div>
+
+    <div class="controls-wrapper">
+        <div class="wkt-form">
+            <form data-ng-controller="WktFormController"
+                  data-ng-submit="submit()">
+                <div class="input-group">
+                    <input name="wkt-string" placeholder="Enter WKT string" data-ng-model="wkt" class="form-control">
+                    <span class="input-group-addon add-button" data-ng-click="submit()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <ul data-ng-controller="GeometryListController" class="list-group geometry-list">
+            <li data-ng-repeat="item in geometryList" class="list-group-item">
+                <a href="#">
+                    <span class="glyphicon glyphicon-remove text-danger"
+                          data-ng-click="removeGeometry($index)"></span>
+                </a>
+                {{ item.wkt }}
+            </li>
+        </ul>
+    </div>
 </body>
 </html>
