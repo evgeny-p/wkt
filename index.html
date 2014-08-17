@@ -16,6 +16,7 @@
 
     <script src="js/app/app.js"></script>
     <script src="js/controllers/dg-map.js"></script>
+    <script src="js/controllers/geometry-list.js"></script>
     <script src="js/directives/dg-map.js"></script>
     <script src="js/services/geometry-list.js"></script>
 </head>
@@ -29,12 +30,10 @@
     </div>
 
     <ul data-ng-controller="GeometryListController" class="geometry-list">
-        <li data-ng-repeat="item in geometry">
+        <li data-ng-repeat="item in geometryList">
            <button data-ng-click="removeGeometry($index)">X</button>
            <span>{{ item.wkt }}</span>
         </li>
     </ul>
-
-    <script src="js/app/geometry-list.js"></script>
 </body>
 </html>
