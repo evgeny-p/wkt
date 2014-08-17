@@ -20,6 +20,7 @@
     <script src="js/app/app.js"></script>
     <script src="js/controllers/dg-map.js"></script>
     <script src="js/controllers/geometry-list.js"></script>
+    <script src="js/controllers/wkt-form.js"></script>
     <script src="js/directives/dg-map.js"></script>
     <script src="js/services/geometry-list.js"></script>
 </head>
@@ -32,11 +33,28 @@
          data-zoom-control="false">
     </div>
 
-    <ul data-ng-controller="GeometryListController" class="geometry-list">
-        <li data-ng-repeat="item in geometryList">
-           <button data-ng-click="removeGeometry($index)">X</button>
-           <span>{{ item.wkt }}</span>
-        </li>
-    </ul>
+    <div class="controls-wrapper">
+        <div class="wkt-form">
+            <form data-ng-controller="WktFormController"
+                  data-ng-submit="submit()">
+                <div class="input-group">
+                    <input name="wkt-string" placeholder="Enter WKT string" data-ng-model="wkt" class="form-control">
+                    <span class="input-group-addon add-button" data-ng-click="submit()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <ul data-ng-controller="GeometryListController" class="list-group geometry-list">
+            <li data-ng-repeat="item in geometryList" class="list-group-item">
+                <a href="#">
+                    <span class="glyphicon glyphicon-remove text-danger"
+                          data-ng-click="removeGeometry($index)"></span>
+                </a>
+                {{ item.wkt }}
+            </li>
+        </ul>
+    </div>
 </body>
 </html>

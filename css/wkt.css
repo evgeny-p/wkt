@@ -9,8 +9,25 @@ body {
   width: 100%;
 }
 
+.controls-wrapper {
+  pointer-events: none;
+  position: absolute;
+}
+
+.wkt-form {
+  margin: 15px;
+  pointer-events: all;
+}
+
+.wkt-form .add-button {
+  cursor: pointer;
+}
+
 .geometry-list {
   background-color: #fff;
   margin: 15px 0 0 15px;
-  position: absolute;
+  max-height: 480px;
+  overflow-y: auto;
+  pointer-events: all;
+  width: 400px;
 }
