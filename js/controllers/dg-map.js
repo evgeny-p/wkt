@@ -30,6 +30,9 @@
 
             createdLayers.forEach(function(item) {
                 scope.layerGroup.addLayer(item);
+                if (geometryListService.needFitBounds) {
+                    $scope.dgMap.fitBounds(item.getBounds());
+                }
             });
 
             removedLayers.forEach(function(item) {
